@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clock{
+            width: 100vw;
+            height: 100vh;
+            background-color: blue;
+            color: #fff;
+            padding: 50px;
+            text-align: center;
+            display: flex;
+        }
+        .clock-show{
+            margin: auto;
+            font-size: 85px;
+            font-weight: bold;
+        }
+        h2{
+            padding-left: 10px;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clock">
+        <div class="clock-show">
+            <small id="updateTime"></small>
+            <small id="updateFormat"></small>
+        </div>
+    </div>
+    
+
+
+    <script>
+        function digitalClock(){
+        let date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        let timeFormat = 'AM';
+
+        if(hours === 0){
+            hours = 12;
+        }
+        if(hours>12){
+            hours = hours - 12;
+            timeFormat = 'PM';
+        }
+       
+       
+        hours = hours <10 ? '0'+ hours : hours;
+        minutes = minutes <10 ? '0'+ minutes : minutes;
+        seconds = seconds <10 ? '0'+ seconds : seconds;
+
+        let finalTime = `${hours}: ${minutes}: ${seconds}`;
+
+        document.getElementById('updateTime').innerText = finalTime;
+        document.getElementById('updateFormat').innerText = timeFormat;
+
+        setInterval(digitalClock, 1000);
+    }
+    digitalClock();
+    
+    </script>
+</body>
+</html>
